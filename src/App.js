@@ -16,7 +16,7 @@ function App() {
 
       <div class="card">
       <Navbar>
-    <Navbar.Brand href="#">SCHOOL NAME</Navbar.Brand>
+    <Navbar.Brand href="#">SCHOOL NAME </Navbar.Brand>
   </Navbar>
       </div>
       <br></br><br></br>
