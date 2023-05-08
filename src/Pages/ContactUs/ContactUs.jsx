@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SideNavBar from "../../components/SideNavBar/SideNavBar";
-import { Container, Header, Content, Footer, Grid, Row, Col, FlexboxGrid, Form, ButtonToolbar, Button, Input, InputGroup, InputNumber } from 'rsuite';
+import { Container, Header, Content, Grid, Row, Col, Form, ButtonToolbar, Button, Input } from 'rsuite';
 import LocationIcon from '@rsuite/icons/Location';
 import TimeIcon from '@rsuite/icons/Time';
 import EmailIcon from '@rsuite/icons/Email';
@@ -82,7 +82,7 @@ function ContactUs() {
           </Content>
 
           <Container style={{ margin: "20px", align:"center"}}>
-            <iframe width="100%" height="500" borderRadius="20px" frameborder="1" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=VIT%20Vellore+(Vellore%20Institute%20of%20Techonlogy)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/distance-area-calculator.html">measure acres/hectares on map</a></iframe>
+            <iframe title="location" width="100%" height="500" borderRadius="20px" frameborder="1" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=VIT%20Vellore+(Vellore%20Institute%20of%20Techonlogy)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/distance-area-calculator.html">measure acres/hectares on map</a></iframe>
           </Container>
         </div>
       </Container>
