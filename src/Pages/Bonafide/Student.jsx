@@ -57,7 +57,6 @@ function Student() {
     }
 
     const handleFromDate = date => {
-        let from = new Date(date)
         const day = date.getDate();
         const month = date.getMonth() + 1; 
         const year = date.getFullYear();
@@ -66,7 +65,6 @@ function Student() {
         setVisa((prev)=>({...prev,fromDate:`${paddedDay}/${paddedMonth}/${year}`}));
     }
     const handleToDate = date => {
-        let from = new Date(date)
         const day = date.getDate();
         const month = date.getMonth() + 1; 
         const year = date.getFullYear();

@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Table from 'react-bootstrap/Table'
-import Modal from 'react-bootstrap/Modal';
 import SideNavBar from '../../components/SideNavBar/SideNavBar'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

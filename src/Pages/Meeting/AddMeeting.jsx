@@ -1,12 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Table from 'react-bootstrap/Table'
 
 import { TagPicker } from 'rsuite';
 
 import SideNavBar from '../../components/SideNavBar/SideNavBar'
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import * as solid from "@fortawesome/free-solid-svg-icons"
 
 const AddMeeting = () => {
     const data = ['Jaya', 'Lakshmi', 'Ramu', 'Siva', 'Ram', 'Krishna', 'Govindha', 'Kumar'].map(

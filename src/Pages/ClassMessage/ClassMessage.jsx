@@ -7,7 +7,6 @@ import { getClassMessage } from '../../actions/classMessage'
 const ClassMessage = () => {
   const dispatch = useDispatch();
   const classid = ''
-  const user = useSelector(state => state.currentuserReducer)
   useEffect(() => {
     dispatch(getClassMessage(classid))
   }, [dispatch])

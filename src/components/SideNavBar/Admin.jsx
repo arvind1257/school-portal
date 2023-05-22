@@ -1,7 +1,6 @@
 import React from "react";
 import { Nav } from 'rsuite';
 import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
-import GroupIcon from '@rsuite/icons/legacy/Group';
 import Attendance from '@rsuite/icons/legacy/CalendarCheckO';
 import HR from "@rsuite/icons/legacy/UserInfo";
 import Class from "@rsuite/icons/legacy/Book";

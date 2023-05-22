@@ -1,7 +1,7 @@
 import SideNavBar from "../../components/SideNavBar/SideNavBar";
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
-import { Panel, Table, Steps, Tag, TagGroup, ButtonGroup, Button } from 'rsuite';
+import { Panel, Steps, Tag, TagGroup, ButtonGroup, Button } from 'rsuite';
 import './Home.css';
 import { setCurrentUser } from "../../actions/currentUser";
 import { useDispatch, useSelector } from "react-redux";
@@ -68,10 +68,10 @@ const data = [
 
 function Home() {
     const [step, setStep] = React.useState(0);
-    const [father, setFather] = useState(true);
-    const [mother, setMother] = useState(true);
-    const [bus, setBus] = useState(true);
-    const [hostel, setHostel] = useState(false);
+    // const [father, setFather] = useState(true);
+    // const [mother, setMother] = useState(true);
+    // const [bus, setBus] = useState(true);
+    // const [hostel, setHostel] = useState(false);
     const onChange = nextStep => {
         setStep(nextStep < 0 ? 0 : nextStep > 3 ? 3 : nextStep);
     };
@@ -102,7 +102,7 @@ console.log(currentUser)
                         {step === 0 &&
                             <div className="PersonalDetails">
                                 <Panel shaded bordered bodyFill style={{ display: 'inline-block', width: 240 }}>
-                                    <img src="https://via.placeholder.com/240x240" height="240" />
+                                    <img src="https://via.placeholder.com/240x240" alt="no img" height="240" />
                                     <Panel header="STUDENT NAME">
                                         <p>
                                             <small>
@@ -175,7 +175,7 @@ console.log(currentUser)
                         {step === 1 &&
                             <div className="FamilyDetails">
                                 <Panel shaded bordered bodyFill style={{ display: 'inline-block', width: 240 }}>
-                                    <img src="https://via.placeholder.com/240x240" height="240" />
+                                    <img alt="no img" src="https://via.placeholder.com/240x240" height="240" />
                                     <Panel header="STUDENT NAME">
                                         <p>
                                             <small>
@@ -187,7 +187,7 @@ console.log(currentUser)
                                 {(
                                     data.map((item) => (
                                         <div className="col">
-                                            {father && <>
+                                            {//father && <>
                                                 <div className='leftcol' >
                                                     <h4 style={{ display: 'block', margin: '10px' }}>Father Details</h4>
                                                     <TagGroup key={item} style={{ display: 'block', margin: '10px' }}>
@@ -219,9 +219,9 @@ console.log(currentUser)
                                                         <Tag size="lg">{item.father.email}</Tag>
                                                     </TagGroup>
                                                 </div>
-                                            </>
+                                            //</>
                                             }
-                                            {mother && <>
+                                            {//mother && <>
                                                 <div className='rightcol'>
                                                     <h4 style={{ display: 'block', margin: '10px' }}>Mother Details</h4>
                                                     <TagGroup key={item} style={{ display: 'block', margin: '10px' }}>
@@ -253,9 +253,9 @@ console.log(currentUser)
                                                         <Tag size="lg">{item.mother.email}</Tag>
                                                     </TagGroup>
                                                 </div>
-                                            </>
+                                            //</>
                                             }
-                                            {!father && !mother && <>
+                                            {//!father && !mother && <>
                                                 <div className='leftcol'>
                                                     <h4 style={{ display: 'block', margin: '10px' }}>Guardian Details</h4>
                                                     <TagGroup key={item} style={{ display: 'block', margin: '10px' }}>
@@ -288,7 +288,7 @@ console.log(currentUser)
                                                     </TagGroup>
                                                 </div>
 
-                                            </>
+                                            //</>
                                             }
                                         </div>
                                     ))
@@ -300,7 +300,7 @@ console.log(currentUser)
                         {step === 2 &&
                             <div className="SchoolBusAndHostelDetails">
                                 <Panel shaded bordered bodyFill style={{ display: 'inline-block', width: 240 }}>
-                                    <img src="https://via.placeholder.com/240x240" height="240" />
+                                    <img alt="no img" src="https://via.placeholder.com/240x240" height="240" />
                                     <Panel header="STUDENT NAME">
                                         <p>
                                             <small>
@@ -312,7 +312,7 @@ console.log(currentUser)
                                 {(
                                     data.map((item) => (
                                         <div className="col">
-                                            {bus && <>
+                                            {//bus && <>
                                                 <div className='leftcol' >
                                                     <TagGroup key={item} style={{ display: 'block', margin: '10px' }}>
                                                         <Tag size="lg">Bus Stop Area</Tag>
@@ -328,9 +328,9 @@ console.log(currentUser)
                                                     </TagGroup>
                                                     
                                                 </div>
-                                            </>
+                                            //</>
                                             }
-                                            {hostel && <>
+                                            {//hostel && <>
                                                 <div className='leftcol' >
                                                     <TagGroup key={item} style={{ display: 'block', margin: '10px' }}>
                                                         <Tag size="lg">Room Type</Tag>
@@ -341,7 +341,7 @@ console.log(currentUser)
                                                         <Tag size="lg">{item.hostelDetails.foodType}</Tag>
                                                     </TagGroup>
                                                 </div>
-                                            </>
+                                            //</>
                                             }
                                         </div>
                                     ))

@@ -29,7 +29,6 @@ import Fees from "./Pages/Fees/Fees";
 import AddExam from "./Pages/Exam/AddExam";
 import Meeting from "./Pages/Meeting/Meeting";
 import AddMeeting from "./Pages/Meeting/AddMeeting";
-import Student from "./components/SideNavBar/Student";
 
 const AllRoutes = () => {
     return(

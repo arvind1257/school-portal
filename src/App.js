@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "rsuite";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { StudentlogIn,TeacherlogIn,AdminlogIn } from "./actions/auth";
 
 function App() {

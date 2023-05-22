@@ -4,13 +4,10 @@ import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
 import GroupIcon from '@rsuite/icons/legacy/Group';
 import Upload from '@rsuite/icons/legacy/FileUpload';
 import Calendar from '@rsuite/icons/legacy/Calendar';
-import Marks from "@rsuite/icons/legacy/BarChart";
-import Graph from "@rsuite/icons/legacy/Briefcase";
 import User from "@rsuite/icons/legacy/User"
 import Payment from "@rsuite/icons/legacy/CreditCard"
 import Setting from "@rsuite/icons/legacy/Gear"
 import Bonafide from "@rsuite/icons/legacy/Certificate"
-import Message from "@rsuite/icons/Message"
 import Class from "@rsuite/icons/legacy/Book";
 const Student = () => {
     return(

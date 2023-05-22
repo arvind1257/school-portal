@@ -1,6 +1,4 @@
 import React from 'react'
-import Table from "react-bootstrap/Table"
-import { DatePicker, Stack } from 'rsuite'
 
 import "./Bonafide.css"
 import SideNavBar from '../../components/SideNavBar/SideNavBar'

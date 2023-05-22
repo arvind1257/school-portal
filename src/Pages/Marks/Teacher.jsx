@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import SideNavBar from '../../components/SideNavBar/SideNavBar'
 import Table from "react-bootstrap/Table";
 import { TagGroup, Tag } from 'rsuite';
