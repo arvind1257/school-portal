@@ -2,7 +2,7 @@ import React from "react";
 import { Routes,Route,BrowserRouter} from "react-router-dom"
 import App from "./App"
 import Navbar from "./components/NavBar/Navbar";
-import Home from "./Pages/Home/Home"
+import Home from "./Pages/Dashboard/Student";
 import Attendance from "./Pages/Attendance/Attendance"
 import Error404 from "./Pages/Error404";
 import ContactUs from "./Pages/ContactUs/ContactUs";
@@ -20,9 +20,17 @@ import PostStudent from "./Pages/Attendance/PostStudent2";
 import PostStudent1 from "./Pages/Attendance/PostStudent1";
 import ClassMessage from "./Pages/ClassMessage/ClassMessage";
 import Timetable from "./Pages/Time table/timetable";
-import PostAssessment from "./Pages/Assessments/PostAssessment";
-import NewAssessment from "./Pages/Assessments/NewAssessment";
+import PostAssessment from "./Pages/Assessments/PostAssessment"
+import NewAssessment from "./Pages/Assessments/NewAssessment"
 import Exam from "./Pages/Exam/Exam"
+import AddStudent from "./Pages/Student/AddStudent";
+import AddTeacher from "./Pages/Teacher/AddTeacher";
+import Fees from "./Pages/Fees/Fees";
+import AddExam from "./Pages/Exam/AddExam";
+import Meeting from "./Pages/Meeting/Meeting";
+import AddMeeting from "./Pages/Meeting/AddMeeting";
+import Student from "./components/SideNavBar/Student";
+
 const AllRoutes = () => {
     return(
         <BrowserRouter>
@@ -32,8 +40,7 @@ const AllRoutes = () => {
                 <Route path='/Home' element={<Home/>}/>
                 <Route path='/Attendance' element={<Attendance/>}/>
                 <Route path='/Leave' element={<Leave/>}/>
-                <Route path='/Contact' element={<ContactUs/>}/>
-                <Route path='/Assessment' element={<Assessments/>}/>
+                <Route path='/ContactUs' element={<ContactUs/>}/>                <Route path='/Assessment' element={<Assessments/>}/>
                 <Route path='/Assessment/:id' element={<ViewAssessment />}/>
                 <Route path='/PostAssessment/:id' element={<PostAssessment />}/>
                 <Route path='/PostAssessment' element={<NewAssessment />}/>
@@ -42,6 +49,7 @@ const AllRoutes = () => {
                 <Route path='/Setting' element={<Settings/>}/>
                 <Route path='/Bonafide' element={<Bonafide/>}/>
                 <Route path='/StudentInfo' element={<StudentInfo/>}/>
+                <Route path='/AddStudent' element={<AddStudent/>}/>
                 <Route path='/StaffInfo' element={<TeacherInfo/>}/>
                 <Route path='/StudentList' element={<StudentList/>}/>
                 <Route path='/PostAttendance' element={<PostStudent/>}/>
@@ -50,6 +58,12 @@ const AllRoutes = () => {
                 <Route path='/timetable' element={<Timetable/>}/> 
                 <Route path='*' element={<Error404/>}/>
                 <Route path='/Exam' element={<Exam/>}/>
+                <Route path='/AddStaff' element={<AddTeacher/>}/>
+                <Route path='/Payment' element={<Fees/>}/>
+                <Route path='/AddSchedule' element={<AddExam/>} />
+                <Route path='/Meeting' element={<Meeting/>} />
+                <Route path='/AddMeeting' element={<AddMeeting/>} />
+                
             </Routes>
         </BrowserRouter>
     )

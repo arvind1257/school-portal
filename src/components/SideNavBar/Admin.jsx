@@ -25,6 +25,7 @@ const Admin = () => {
         </Nav.Item>
         <Nav.Item href='/StudentInfo'>Student Info</Nav.Item>
         <Nav.Item href='/AddStudent'>Add Student</Nav.Item>
+        <Nav.Item href='/Bonafide'>Student Bonafide</Nav.Item>
         <Nav.Item divider />
         <Nav.Item panel style={{ padding: '15px 20px',color: '#aaa'}}>
           Staff
@@ -35,18 +36,18 @@ const Admin = () => {
         <Nav.Item href='/Meeting'>Meetings</Nav.Item>
       </Nav.Menu>
       <Nav.Menu placement="rightStart" title="Class" icon={<Class />}>
-        <Nav.Item href='/StudentInfo'>Exams</Nav.Item>
-        <Nav.Item href='/PostAttendance'>TimeTable</Nav.Item>
+        <Nav.Item href='/Exam'>Exams</Nav.Item>
+        <Nav.Item href='/TimeTable'>TimeTable</Nav.Item>
       </Nav.Menu>
-      <Nav.Item href='/Fees' icon={<Fees />}>
+      <Nav.Item href='/payment' icon={<Fees />}>
         Fees Stucture
       </Nav.Item>
       <Nav.Item href='/Setting' icon={<Setting />}>
         Settings
       </Nav.Item>
-      <Nav.Item href='/Contact' icon={<GroupIcon />}>
+      {/* <Nav.Item href='/Contact' icon={<GroupIcon />}>
         Contact
-      </Nav.Item>
+      </Nav.Item> */}
       {/*<Nav.Menu placement="rightStart" eventKey="3" title="Advanced" icon={<MagicIcon />}>
               <Nav.Item eventKey="3-1">Geo</Nav.Item>
               <Nav.Item eventKey="3-2">Devices</Nav.Item>
