@@ -9,6 +9,7 @@ import Payment from "@rsuite/icons/legacy/CreditCard"
 import Setting from "@rsuite/icons/legacy/Gear"
 import Bonafide from "@rsuite/icons/legacy/Certificate"
 import Class from "@rsuite/icons/legacy/Book";
+import './SideNavBar.css';
 const Student = () => {
     return(
         <Nav style={{width:"100%"}}>
@@ -23,16 +24,16 @@ const Student = () => {
             </Nav.Item>
             <Nav.Menu placement="rightStart" title="Class Info" icon={<Class />}>
             <Nav.Item href='/Assessment'>
-              Assessment
+              <a href="/Assessment" style={{ textDecoration: 'none', color: 'black'}}>Assessment</a> 
             </Nav.Item>
             <Nav.Item href='/ClassMessage'>
-              Class Message
+            <a href="/ClassMessage" style={{ textDecoration: 'none', color: 'black'}}>Class Messages</a>
             </Nav.Item>
             <Nav.Item href='/Exam'>
-              Exam Schedule
+            <a href="/Exam" style={{ textDecoration: 'none', color: 'black'}}>Exam Schedule</a>
             </Nav.Item>
             <Nav.Item href='/Marks'>
-              Marks/Grade
+            <a href="/Marks" style={{ textDecoration: 'none', color: 'black'}}>Marks/Grade</a>
             </Nav.Item>
             </Nav.Menu>
             <Nav.Item href='/Teachers' icon={<User />}>

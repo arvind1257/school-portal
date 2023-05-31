@@ -29,6 +29,9 @@ import Fees from "./Pages/Fees/Fees";
 import AddExam from "./Pages/Exam/AddExam";
 import Meeting from "./Pages/Meeting/Meeting";
 import AddMeeting from "./Pages/Meeting/AddMeeting";
+import CreateClass from "./Pages/Class/CreateClass";
+import ClassInfo from "./Pages/Class/ClassInfo";
+import ViewBonafide from "./Pages/Bonafide/ViewBonafide";
 
 const AllRoutes = () => {
     return(
@@ -39,7 +42,8 @@ const AllRoutes = () => {
                 <Route path='/Home' element={<Home/>}/>
                 <Route path='/Attendance' element={<Attendance/>}/>
                 <Route path='/Leave' element={<Leave/>}/>
-                <Route path='/ContactUs' element={<ContactUs/>}/>                <Route path='/Assessment' element={<Assessments/>}/>
+                <Route path='/ContactUs' element={<ContactUs/>}/>                
+                <Route path='/Assessment' element={<Assessments/>}/>
                 <Route path='/Assessment/:id' element={<ViewAssessment />}/>
                 <Route path='/PostAssessment/:id' element={<PostAssessment />}/>
                 <Route path='/PostAssessment' element={<NewAssessment />}/>
@@ -62,6 +66,9 @@ const AllRoutes = () => {
                 <Route path='/AddSchedule' element={<AddExam/>} />
                 <Route path='/Meeting' element={<Meeting/>} />
                 <Route path='/AddMeeting' element={<AddMeeting/>} />
+                <Route path='/CreateClass' element={<CreateClass/>} />
+                <Route path='/ClassInfo' element={<ClassInfo/>} />
+                <Route path='/ViewBonafide' element={<ViewBonafide/>} />
                 
             </Routes>
         </BrowserRouter>
