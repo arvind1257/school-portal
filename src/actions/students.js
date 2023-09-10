@@ -12,6 +12,21 @@ export const requestStudents = () => async (dispatch) => {
     }
 }
 
+export const requestClassStudents = (classID,navigate) => async (dispatch) => {
+    try{
+        const {data} = await api.requestClassStudents(classID)
+        // console.log(data)
+        // console.log(data.docs);
+        dispatch({type:'FETCH_CLASS_STUDENTS',payload:data})
+        // navigate('/StudentList',{state:{students:data.docs}})
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+
+
 export const updateSection = (studentData,navigate) => async (dispatch) => {
     try{
         await Promise.all(

@@ -1,11 +1,15 @@
 .selectPicker2{
-    width: 50%;
+    width: 90%;
     padding: 5px;
     border-radius: 5px;
 }
 
+.selectPicker2:focus{
+    outline:none;
+}
+
 .selectPicker3{
-    width: 75%;
+    width: 100%;
     padding: 5px;
     border-radius: 5px;
 }
@@ -16,24 +20,65 @@
 
 }
 
-.AddStudent-Table-List{
-    width:100%;
-    justify-content: center;
+.AddStudent-container{
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
 }
 
-.AddStudent-Table-List tr:nth-child(odd) td:nth-child(odd){
-    background-color: gray;
-    font-size: 20px;
-    font-style: italic;
-    font-weight: 700;
+.AddStudent-container::-webkit-scrollbar {
+  display: none;
 }
 
-.AddStudent-Table-List tr:nth-child(even) td:nth-child(odd){
-    background-color: lightgray;
-    font-size: 20px;
-    font-style: italic;
-    font-weight: 700;
+.AddStudent-Table-List {
+  border-collapse: separate;
+  justify-content: center;
+  border-spacing: 0;
+  width: 100%;
+  min-width: 400px;
+  font-size: 17px;
 }
+.AddStudent-Table-List tr td:nth-child(odd),
+.AddStudent-Table-List tr td:nth-child(even) {
+  border-bottom: 1px solid #cadeef;
+  text-align: left;
+  padding: 5px;
+}
+
+.AddStudent-Table-List tr td:nth-child(even) {
+  border-right: 1px solid #cadeef;
+}
+
+.AddStudent-Table-List tr td:first-child {
+  border-left: 1px solid #cadeef;
+}
+
+.AddStudent-Table-List tr td:nth-child(odd) {
+  background:	#cadeef;
+  font-size: 18px;
+  font-weight: 700;
+}
+.AddStudent-Table-List tr td:nth-child(even) { 
+    background: rgb(202 222 239 / 0.3);
+  }
+
+  .AddStudent-Table-List tr:first-child td:first-child {
+  border-top-left-radius: 6px;
+}
+
+.AddStudent-Table-List tr:first-child td:last-child {
+  border-top-right-radius: 6px;
+}
+
+.AddStudent-Table-List tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+
+.AddStudent-Table-List tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
+
 
 .AddStudent-Table-List input[type="text"]{
     padding:2px;
@@ -41,32 +86,156 @@
     font-size:18px;
 }
 
+.AddStudent-Table-List input[type="text"],
+.AddStudent-Table-List input[type="number"],
+.AddStudent-Table-List select,
+.AddStudent-Table-List input[type="date"]{
+    width:80%;
+    padding:3px;
+    font-size: 16px;
+    border-radius: 3px;
+    border:1.5px solid #cadeef;
+}
+
+.AddStudent-Table-List input[type="text"]:focus,
+.AddStudent-Table-List input[type="number"]:focus,
+.AddStudent-Table-List select:focus,
+.AddStudent-Table-List input[type="date"]:focus{
+    border:1.5px solid #73ade0;
+    outline:none;
+}
+
+
+.AddStudent-Table-List select{
+    width: 70%;
+}
+
 .studentlist-container{
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 
 }
 
-.tablestyle4{
-    width:100%;
-    margin:10px auto;
-    border-collapse: collapse;
-    border: 1px solid black;
+.studentlist-filter{
+  text-align: right;
 }
 
-.tablestyle4 th,.tablestyle4 td{
-    border: 1px solid black;
-    padding:10px;
+.StudentList-content-table .btn.btn-primary{
+  background-color: #0d6efd;
 }
 
-.tablestyle4 th{
-    background-color: gray;
-    color:white;
-    font-weight: 800;
-    font-size:19px;
+.StudentList-content-table .btn.btn-primary:hover{
+  background-color: #0b5ed7;
 }
 
-.tablestyle4 td{
-    font-weight: 800;
-    font-size:16px;
+.StudentList-content-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    min-width: 400px;
+    font-size: 17px;
+  }
+  .StudentList-content-table tr th,
+  .StudentList-content-table tr td {
+    border-bottom: 1px solid #cadeef;
+    text-align: left;
+    padding: 5px;
+  }
+  .StudentList-content-table tr th:nth-child(5n),
+  .StudentList-content-table tr td:nth-child(5n) {
+    border-right: 1px solid #cadeef;
+  }
+  .StudentList-content-table tr th:first-child,
+  .StudentList-content-table tr td:first-child {
+    border-left: 1px solid #cadeef;
+  }
+  .StudentList-content-table tr th {
+    background:	#cadeef;
+    border-top: 1px solid #cadeef;
+  }
+  .StudentList-content-table tr td {
+      background: rgb(202 222 239 / 0.3);
+    }
+  
+  .StudentList-content-table tr:first-child th:first-child {
+    border-top-left-radius: 6px;
+  }
+  
+  .StudentList-content-table tr:first-child th:last-child {
+    border-top-right-radius: 6px;
+  }
+  
+  .StudentList-content-table tr:last-child td:first-child {
+    border-bottom-left-radius: 6px;
+  }
+  
+  .StudentList-content-table tr:last-child td:last-child {
+    border-bottom-right-radius: 6px;
+  }
+
+  .StudentInfo-content-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    min-width: 400px;
+    font-size: 17px;
+  }
+  .StudentInfo-content-table tr th,
+  .StudentInfo-content-table tr td {
+    border-bottom: 1px solid #cadeef;
+    text-align: left;
+    padding: 5px;
+  }
+  .StudentInfo-content-table tr th:nth-child(6n),
+  .StudentInfo-content-table tr td:nth-child(6n) {
+    border-right: 1px solid #cadeef;
+  }
+  .StudentInfo-content-table tr th:first-child,
+  .StudentInfo-content-table tr td:first-child {
+    border-left: 1px solid #cadeef;
+  }
+  .StudentInfo-content-table tr th {
+    background:	#cadeef;
+    border-top: 1px solid #cadeef;
+  }
+  .StudentInfo-content-table tr td {
+      background: rgb(202 222 239 / 0.3);
+    }
+  
+  .StudentInfo-content-table tr:first-child th:first-child {
+    border-top-left-radius: 6px;
+  }
+  
+  .StudentInfo-content-table tr:first-child th:last-child {
+    border-top-right-radius: 6px;
+  }
+  
+  .StudentInfo-content-table tr:last-child td:first-child {
+    border-bottom-left-radius: 6px;
+  }
+  
+  .StudentInfo-content-table tr:last-child td:last-child {
+    border-bottom-right-radius: 6px;
+  }
+  
+
+  @media (min-width:1000px){
+    .selectPicker2{
+        width:50%;
+    }   
+  }
+
+  
+  @media (max-width:575px){
+    .studentlist-filter{
+      text-align: left;
+    }
+  }
+
+.StudentInfo-content-table .btn.btn-primary:hover {
+    background-color: #0a58ca;
+}
+
+.StudentInfo-content-table .btn.btn-primary {
+    background-color: #0d6efd;
 }

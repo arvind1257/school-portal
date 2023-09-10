@@ -1,50 +1,65 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Table from "react-bootstrap/Table"
-import { DatePicker, Stack } from 'rsuite'
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Accordion from 'react-bootstrap/Accordion'
 
 import "./Bonafide.css"
-import { requestBonafide,viewBonafide } from '../../actions/bonafide';
-import SideNavBar from '../../components/SideNavBar/SideNavBar';
+import { requestBonafide, viewBonafide } from '../../actions/bonafide';
 import { setCurrentUser } from '../../actions/currentUser';
+import { StudentBonafide } from "../../actions/bonafide";
+import { DatePicker, Input, SelectPicker } from 'rsuite';
 
-function Student() {
+function Student({status,onLoading}) {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
+    const selectPickerRef = useRef(null);
     const [Passport, setPassport] = useState({ description: "" });
     const [busPass, setBusPass] = useState({ description: "" });
     const [NCC, setNCC] = useState({ description: "" });
     const [tc, setTc] = useState({ description: "" });
-    const [visa, setVisa] = useState({ description: "", fromDate: "", toDate: "", place: "" });
+    const [visa, setVisa] = useState({ description: "", fromDate: null, toDate: "", place: "" });
     const [incomeTax, setIncomeTax] = useState({ description: "", employee: "" });
-    const [certificate, setCertificate] = React.useState('select');
+    const [certificate, setCertificate] = React.useState(null);
     const data = ['Passport', 'Visa', 'BusPass', 'Income Tax', 'NCC Bonafide', 'TC'].map(
         item => ({ label: item, value: item })
     );
 
     useEffect(() => {
+        onLoading(true);
         dispatch(setCurrentUser({ type: localStorage.getItem('type'), id: localStorage.getItem('id') }));
-    }, [dispatch])
+        dispatch(StudentBonafide(navigate));
+    }, [dispatch,navigate])
 
     const currentUser = useSelector(state => state.currentUserReducer);
     const bonafide = useSelector(state => state.bonafideReducer);
 
-    console.log(bonafide)
-    console.log(location)
+    useEffect(()=>{
+        if(currentUser!==null && bonafide!==null){
+            onLoading(false);
+        }
+    },[onLoading,currentUser,bonafide])
 
-    if(location.state && certificate!=='select'){
-        if(location.state.message==="success"){
+        const handleScroll = () => {
+          if (selectPickerRef.current) {
+            selectPickerRef.current.close(); // Assuming a close() method is available for SelectPicker
+          }
+        };
+
+    console.log(bonafide)
+    console.log(certificate)
+
+    if (location.state && certificate !== null) {
+        if (location.state.message === "success") {
             setPassport({ description: "" });
             setBusPass({ description: "" });
             setNCC({ description: "" });
             setTc({ description: "" });
             setVisa({ description: "", fromDate: "", toDate: "", place: "" });
             setIncomeTax({ description: "", employee: "" });
-            setCertificate('select');
+            setCertificate(null);
             navigate('/Bonafide');
         }
     }
@@ -81,192 +96,188 @@ function Student() {
         dispatch(requestBonafide(req, navigate));
     }
 
-    const handleFromDate = date => {
-        
-        const day = date.getDate();
-        const month = date.getMonth() + 1;
-        const year = date.getFullYear();
-        const paddedDay = day < 10 ? `0${day}` : day;
-        const paddedMonth = month < 10 ? `0${month}` : month;
-        setVisa((prev) => ({ ...prev, fromDate: `${paddedDay}/${paddedMonth}/${year}` }));
-    }
-    const handleToDate = date => {
-        
-        const day = date.getDate();
-        const month = date.getMonth() + 1;
-        const year = date.getFullYear();
-        const paddedDay = day < 10 ? `0${day}` : day;
-        const paddedMonth = month < 10 ? `0${month}` : month;
-        setVisa((prev) => ({ ...prev, toDate: `${paddedDay}/${paddedMonth}/${year}` }));
+    const handleDateFormat = (date) => {
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        };
+        const userLocale = navigator.language || navigator.userLanguage;
+        const formattedDate = new Intl.DateTimeFormat(userLocale, options).format(date);
+        return formattedDate
     }
 
-    const handleFile = (request) =>{
+    const formatDateToString = (date) => {
+        console.log(date instanceof Date)
+        if (date instanceof Date) {
+            console.log(date.toISOString());
+          return date.toISOString().split('T')[0];
+        }
+        return '';
+      };
+
+    const handleFile = (request) => {
         dispatch(viewBonafide(request));
     }
-
+    console.log(visa);
     return (
-        <div className='Main'>
-            <SideNavBar />
+        <div className='Main' onScroll={()=>handleScroll()}>
             <div className="Home">
-                <div className="container rounded bg-white">
+                <div style={{ padding: "20px 40px" }} class="container1 container rounded bg-white">
                     <h2>Bonafide Application</h2>
                     <hr style={{ border: "1px solid gray" }} />
-                    <div className='bonafide-content'>
-                        <div className='row bonafide-content-1'>
-                            <div className='col-lg-3'>
-                                <h4>Select Service : </h4>
+                    <div style={{ width: "100%" }} className='container bonafide-content AddStudent-container'>
+                        <div style={{ minWidth: "500px" }}>
+                            <div className='row bonafide-content-1'>
+                                <div className='col-lg-3 col-md-4 col-sm-5'>
+                                    <h4>Select Service : </h4>
+                                </div>
+                                <div className='col-lg-4 col-md-4 col-sm-5'>
+                                    <SelectPicker ref={selectPickerRef} style={{width:"100%"}} data={data.map((item) => ({label:item.value,value:item.value}))} value={certificate} onChange={(value) => setCertificate(value)} />
+                                </div>
                             </div>
-                            <div className='col-lg-4'>
-                                <select value={certificate} className="selectPicker" onChange={(e) => setCertificate(e.target.value)} required>
-                                    <option value='select' disabled>Select Service</option>
-                                    {
-                                        data.map((item) => (
-                                            <option value={item.value}>{item.value}</option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                        <div className='bonafide-content-2'>
-                            <br /><br />
-                            {certificate !== 'select' &&
-                                <Table className='tablestyle3'>
-                                    <thead>
-                                        <tr>
-                                            <th style={{ textAlign: 'center' }} colSpan={2}>Bonafide Application(All fields are mandatory)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            certificate === "Income Tax" && <>
-                                                <tr>
-                                                    <td>Who is Employee<span style={{ color: "red" }}>*</span></td>
-                                                    <td>
-                                                        <select value={incomeTax.employee} onChange={(e) => setIncomeTax((prev) => ({ ...prev, employee: e.target.value }))} className="selectPicker1" required>
-                                                            <option value='' disabled>Select one option</option>
-                                                            <option value='Father'>Father</option>
-                                                            <option value='Mother'>Mother</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Description (about certificate which you are applying..)<span style={{ color: "red" }}>*</span></td>
-                                                    <td><textarea value={incomeTax.description} onChange={(e) => setIncomeTax((prev) => ({ ...prev, description: e.target.value }))} rows="5" cols="60" ></textarea></td>
-                                                </tr>
-                                            </>
-                                        }
-                                        {
-                                            certificate === "Visa" && <>
-                                                <tr>
-                                                    <td>From Date{visa.fromDate}<span style={{ color: "red" }}>*</span></td>
-                                                    <td>
-                                                        <Stack direction="column" alignItems="flex-start" spacing={6}>
-                                                            <DatePicker defaultValue={visa.fromDate} onChange={handleFromDate} editable={false} />
-                                                        </Stack>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>To Date<span style={{ color: "red" }}>*</span></td>
-                                                    <td>
-                                                        <Stack direction="column" alignItems="flex-start" spacing={6}>
-                                                            <DatePicker defaultValue={visa.toDate} onChange={handleToDate} editable={false} />
-                                                        </Stack>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Enter Visa Place<span style={{ color: "red" }}>*</span></td>
-                                                    <td>
-                                                        <input value={visa.place} onChange={(e) => setVisa((prev) => ({ ...prev, place: e.target.value }))} type="text" className="selectPicker1" />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Description (about certificate which you are applying..)<span style={{ color: "red" }}>*</span></td>
-                                                    <td><textarea value={visa.description} onChange={(e) => setVisa((prev) => ({ ...prev, description: e.target.value }))} rows="5" cols="60" ></textarea></td>
-                                                </tr>
-                                            </>
-                                        }
-                                        {
-                                            certificate === "Passport" &&
-                                            <tr>
-                                                <td>Description (about certificate which you are applying..)<span style={{ color: "red" }}>*</span></td>
-                                                <td><textarea value={Passport.description} onChange={(e) => setPassport((prev) => ({ ...prev, description: e.target.value }))} rows="5" cols="60" ></textarea></td>
-                                            </tr>
-                                        }
-                                        {
-                                            certificate === "BusPass" &&
-                                            <tr>
-                                                <td>Description (about certificate which you are applying..)<span style={{ color: "red" }}>*</span></td>
-                                                <td><textarea value={busPass.description} onChange={(e) => setBusPass((prev) => ({ ...prev, description: e.target.value }))} rows="5" cols="60" ></textarea></td>
-                                            </tr>
-                                        }
-                                        {
-                                            certificate === "NCC Bonafide" &&
-                                            <tr>
-                                                <td>Description (about certificate which you are applying..)<span style={{ color: "red" }}>*</span></td>
-                                                <td><textarea value={NCC.description} onChange={(e) => setNCC((prev) => ({ ...prev, description: e.target.value }))} rows="5" cols="60" ></textarea></td>
-                                            </tr>
-                                        }
-                                        {
-                                            certificate === "TC" &&
-                                            <tr>
-                                                <td>Description (about certificate which you are applying..)<span style={{ color: "red" }}>*</span></td>
-                                                <td><textarea value={tc.description} onChange={(e) => setTc((prev) => ({ ...prev, description: e.target.value }))} rows="5" cols="60" ></textarea></td>
-                                            </tr>
-                                        }
-                                        <tr>
-                                            <td style={{ textAlign: "center" }} colSpan={2}>
-                                                <button className='btn btn-primary' onClick={handleSubmit}>Submit</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
-                            }
-                        </div>
-                        <div className='bonafide-content-2'>
-                            <div className='col-lg-12'>
-                            <Accordion style={{width:"100%"}} defaultActiveKey="0">
-                                <Accordion.Item eventKey="0">
-                                    <Accordion.Header style={{ padding: "initial" }}>Requested Bonafide Certificate</Accordion.Header>
-                                    <Accordion.Body>
-                                        <Table striped bordered hover>
+
+                            <div className='bonafide-content-2'>
+                                <br /><br />
+                                {certificate !== null &&
+                                    <div className='table-responsive'>
+                                        <Table className='tablestyle3'>
                                             <thead>
                                                 <tr>
-                                                    <th>S.No.</th>
-                                                    <th>Bonafide Service</th>
-                                                    <th>Posted Date</th>
-                                                    <th>Status</th>
-                                                    <th>Certificate</th>
+                                                    <th style={{ textAlign: 'center' }} colSpan={2}>Bonafide Application(All fields are mandatory)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                { (!bonafide || bonafide.bonafides.length===0) ?
-                                                <tr>
-                                                    <td style={{ textAlign: "center" }} colSpan={6}>No Data</td>
-                                                </tr>  
-                                                :
-                                                bonafide.bonafides.map((item,index)=>(
-                                                <tr>
-                                                    <td>{index+1}</td>
-                                                    <td>{item.service}</td>
-                                                    <td>-</td>
-                                                    <td>
-                                                        {
-                                                            item.requestedFile===null ? <span style={{color:"orange"}}>Pending</span> : <span style={{color:"green"}}>Approved</span>
-                                                        }
-                                                    </td>
-                                                    <td>
-                                                        {
-                                                            item.requestedFile===null ? <span>no File</span> : <button type="button" className='btn btn-primary' onClick={()=>handleFile(item.requestedFile)}>Download</button>
-                                                        }
-                                                    </td>
-                                                </tr>  
-                                                ))
+                                                {
+                                                    certificate === "Income Tax" && <>
+                                                        <tr>
+                                                            <td>Who is Employee<span style={{ color: "red" }}>*</span></td>
+                                                            <td>
+                                                                <SelectPicker ref={selectPickerRef} style={{width:"100%"}} data={[{label:"Father",value:"Father"},{label:"Mother",value:"Mother"}]} value={incomeTax.employee} onChange={(value) => setIncomeTax((prev) => ({ ...prev, employee: value }))}  />
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Description (about certificate which you are applying..)<span style={{ color: "red" }}>*</span></td>
+                                                            <td>
+                                                                <Input as="textarea" value={incomeTax.description} onChange={(value) => setIncomeTax((prev) => ({ ...prev, description: value }))} rows="5" cols="60" />
+                                                            </td>
+                                                        </tr>
+                                                    </>
                                                 }
+                                                {
+                                                    certificate === "Visa" && <>
+                                                        <tr>
+                                                            <td>From Date{visa.fromDate}<span style={{ color: "red" }}>*</span></td>
+                                                            <td>
+                                                                <DatePicker ref={selectPickerRef} value={visa.fromDate} onChange={(date) => setVisa((prev) => ({ ...prev, fromDate: formatDateToString(date) }))} />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>To Date<span style={{ color: "red" }}>*</span></td>
+                                                            <td>
+                                                                <input type="date" value={visa.toDate} onChange={(e) => setVisa((prev) => ({ ...prev, toDate: e.target.value }))} />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Enter Visa Place<span style={{ color: "red" }}>*</span></td>
+                                                            <td>
+                                                                <Input value={visa.place} onChange={(value) => setVisa((prev) => ({ ...prev, place: value }))} type="text" style={{width:"60%"}} />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Description (about certificate which you are applying..)<span style={{ color: "red" }}>*</span></td>
+                                                            <td>
+                                                                <Input as="textarea" value={visa.description} onChange={(value) => setVisa((prev) => ({ ...prev, description: value }))} rows="5" cols="60" />
+                                                            </td>
+                                                        </tr>
+                                                    </>
+                                                }
+                                                {
+                                                    certificate === "Passport" &&
+                                                    <tr>
+                                                        <td>Description (about certificate which you are applying..)<span style={{ color: "red" }}>*</span></td>
+                                                        <td><textarea value={Passport.description} onChange={(e) => setPassport((prev) => ({ ...prev, description: e.target.value }))} rows="5" cols="60" ></textarea></td>
+                                                    </tr>
+                                                }
+                                                {
+                                                    certificate === "BusPass" &&
+                                                    <tr>
+                                                        <td>Description (about certificate which you are applying..)<span style={{ color: "red" }}>*</span></td>
+                                                        <td><textarea value={busPass.description} onChange={(e) => setBusPass((prev) => ({ ...prev, description: e.target.value }))} rows="5" cols="60" ></textarea></td>
+                                                    </tr>
+                                                }
+                                                {
+                                                    certificate === "NCC Bonafide" &&
+                                                    <tr>
+                                                        <td>Description (about certificate which you are applying..)<span style={{ color: "red" }}>*</span></td>
+                                                        <td><textarea value={NCC.description} onChange={(e) => setNCC((prev) => ({ ...prev, description: e.target.value }))} rows="5" cols="60" ></textarea></td>
+                                                    </tr>
+                                                }
+                                                {
+                                                    certificate === "TC" &&
+                                                    <tr>
+                                                        <td>Description (about certificate which you are applying..)<span style={{ color: "red" }}>*</span></td>
+                                                        <td><textarea value={tc.description} onChange={(e) => setTc((prev) => ({ ...prev, description: e.target.value }))} rows="5" cols="60" ></textarea></td>
+                                                    </tr>
+                                                }
+                                                <tr>
+                                                    <td style={{ textAlign: "center" }} colSpan={2}>
+                                                        <button className='btn btn-primary' onClick={handleSubmit}>Submit</button>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </Table>
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                            </Accordion>
+                                    </div>
+                                }
+                            </div>
+
+                            <div className='bonafide-content-2'>
+                                <div className='col-lg-12'>
+                                    <Accordion defaultActiveKey="0">
+                                        <Accordion.Item eventKey="0">
+                                            <Accordion.Header style={{ padding: "initial" }}>Requested Bonafide Certificate</Accordion.Header>
+                                            <Accordion.Body>
+                                                <div className='table-responsive'>
+                                                    <Table className='Bonafide-content-table'>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>S.No.</th>
+                                                                <th>Bonafide Service</th>
+                                                                <th>Posted Date</th>
+                                                                <th>Status</th>
+                                                                <th>Message</th>
+                                                                <th>Certificate</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {(!bonafide || bonafide.docs.length === 0) ?
+                                                                <tr>
+                                                                    <td style={{ textAlign: "center" }} colSpan={6}>No Data</td>
+                                                                </tr>
+                                                                :
+                                                                bonafide.docs.sort((a, b) => (a.status > b.status) ? 1 : -1).map((item, index) => (
+                                                                    <tr>
+                                                                        <td>{index + 1}</td>
+                                                                        <td>{item.service}</td>
+                                                                        <td>{item.postedOn && handleDateFormat(new Date(item.postedOn))}</td>
+                                                                        <td>{item.status}</td>
+                                                                        <td>{item.message ? item.message : "No Message"}</td>
+                                                                        <td>
+                                                                            {
+                                                                                item.requestedFile === null ? <span>no File</span> : <button type="button" className='btn btn-primary' onClick={() => handleFile(item.requestedFile)}>Download</button>
+                                                                            }
+                                                                        </td>
+                                                                    </tr>
+                                                                ))
+                                                            }
+                                                        </tbody>
+                                                    </Table>
+                                                </div>
+                                            </Accordion.Body>
+                                        </Accordion.Item>
+                                    </Accordion>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -277,3 +288,4 @@ function Student() {
 }
 
 export default Student
+

@@ -1,24 +1,24 @@
 import React from 'react'
 import Student from './student'
-import Teacher from './teacher'
+import Admin from './admin'
 
-const Assessments = () => {
+const Exam = ({status,onLoading}) => {
   return (
     <>
     {
     localStorage.getItem('type') && localStorage.getItem('type')==="student" &&
-        <Student/>
+        <Student status={status} onLoading={(status1)=>onLoading(status1)} />
     }
     {
     localStorage.getItem('type') && localStorage.getItem('type')==="teacher" &&
-        <Teacher type="teacher"/>
+        <Admin status={status} onLoading={(status1)=>onLoading(status1)} />
     }
     {
     localStorage.getItem('type') && localStorage.getItem('type')==="admin" &&
-        <Teacher type="admin"/>
+        <Admin status={status} onLoading={(status1)=>onLoading(status1)} />
     }
     </>
   )
 }
 
-export default Assessments
+export default Exam

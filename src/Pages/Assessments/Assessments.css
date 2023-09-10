@@ -1,3 +1,40 @@
+.btnmove {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  @media (max-width: 464px) {
+    .btnmove {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+    }
+  }
+
+.Assessment-Container{
+    padding:10px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}  
+
+.Assessment-Container::-webkit-scrollbar {
+    display: none;
+  }
+
+.btnmove .btn-group .btn-primary{
+    border-top-left-radius: inherit; 
+    border-bottom-left-radius: inherit;
+    height: fit-content;
+    width: fit-content;
+}
+
 .Assessment-tab{
     display:flex;
     padding:10px;
@@ -16,6 +53,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.Assessment-tab-1{
+    align-items: flex-start;
+}
+
+
+.Assessment-tab-1 .h4{
+ text-align: right;
 }
 
 .Assessment-tab-2{
@@ -43,8 +89,7 @@
 
 .edit-title{
     vertical-align: top;
-    font-size:18px;
-    font-style: italic;
+    font-size:16px;
     font-weight: 600;
 }
 
@@ -60,17 +105,33 @@
 }
 
 .custom-btn{
-    position: relative;
-    top:-25px;
+    padding: 0;
+    padding-left:30px;
+    font-size:20px;
+    color:red;
+}
+.custom-btn:hover{
+    color:lightcoral;
+}
+
+.new-assessment-table .quill{
+    width: 400px;
+}
+.new-assessment-table .ql-editor{
+    height:150px;
+    width: inherit;
+    overflow: auto;
 }
 
 .new-assessment-table{
-    width:60%;
+    width:100%;
     border: 1px solid lightgray;
     border-radius: 10px;
 }
 
-.new-assessment-table input[type="text"],.new-assessment-table textarea {
+.new-assessment-table input[type="text"],
+.new-assessment-table input[type="number"],
+.new-assessment-table textarea {
     width:90%;
     padding:4px;
     font-size:18px;

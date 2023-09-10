@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Table from "react-bootstrap/Table"
+import { DatePicker, Stack } from 'rsuite'
 
 import "./Bonafide.css"
 import SideNavBar from '../../components/SideNavBar/SideNavBar'
@@ -19,23 +20,36 @@ function AdminBonafide() {
     },[dispatch])
 
     const allBonafides = useSelector((state)=>state.bonafideReducer)
-    const allStudents = useSelector((state)=>state.allStudentsReducer)
+    const allStudents = useSelector((state)=>state.allStudentsReducer) 
+    const standardList = [{ label: "I", value: 1 }, { label: "II", value: 2 }, { label: "III", value: 3 }, { label: "IV", value: 4 }, { label: "V", value: 5 }, { label: "VI", value: 6 }, { label: "VII", value: 7 }, { label: "VIII", value: 8 }, { label: "IX", value: 9 }, { label: "X", value: 10 }, { label: "XI", value: 11 }, { label: "XII", value: 12 }];
+
 
     const handleView = (studentID,bonafideID) =>{
         const stu = allStudents.docs.filter((item)=>item._id===studentID)
-        const bon = allBonafides.bonafides.filter((item)=>item._id===bonafideID)
+        const bon = allBonafides.docs.filter((item)=>item._id===bonafideID)
         navigate('/ViewBonafide',{state:{student:stu,bonafide:bon}})
+    }
+
+    const handleDateFormat = (date) => {
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        };
+        const userLocale = navigator.language || navigator.userLanguage;
+        const formattedDate = new Intl.DateTimeFormat(userLocale, options).format(date);
+        return formattedDate
     }
     
     return (
         <div className='Main'>
-            <SideNavBar />
             <div className="Home">
-                <div className="container rounded bg-white">
+                <div style={{ padding: "20px 40px" }} class="container1 container rounded bg-white">
                     <h2>Bonafide Applications</h2>
                     <hr style={{ border: "1px solid gray" }} />
                     <br/>
-                    <Table striped bordered hover>
+                    <div className='table-responsive'>
+                    <Table className='AdminBonafide-content-table'>
                         <thead>
                             <tr>
                                 <th>S.No.</th>
@@ -49,20 +63,20 @@ function AdminBonafide() {
                         </thead>
                         <tbody>
                             {
-                            (!allBonafides || allBonafides.bonafides.length===0) ? 
+                            (!allBonafides || allBonafides.docs.length===0) ? 
                             <tr>
                                 <td style={{ textAlign: "center" }} colSpan={7}>No Data</td>
                             </tr> 
                             : 
-                            allBonafides.bonafides.map((bonafide,index) => (
+                            allBonafides.docs.sort((a, b) => a.postedOn > b.postedOn ? -1 : 1 ).map((bonafide,index) => (
                             allStudents && allStudents.docs.filter((item)=>item._id===bonafide.student).map((student)=>(
                             <tr>
                                 <td>{index+1}</td>
                                 <td>{student.firstName+" "+student.lastName}</td>
-                                <td>{student.standard+" "+student.section}</td>
+                                <td>{standardList[student.standard-1].label+" "+student.section}</td>
                                 <td>{bonafide.service}</td>
-                                <td>{bonafide.postedOn}</td>
-                                <td>{bonafide.requestedFile!==null ? <>Uploaded</>  : <>Not Uploaded</> }</td>
+                                <td>{handleDateFormat(new Date(bonafide.postedOn))}</td>
+                                <td>{bonafide.status}</td>
                                 <td><button className='btn btn-primary' onClick={()=>handleView(student._id,bonafide._id)}>View</button></td>
                             </tr>
                             ))
@@ -71,6 +85,7 @@ function AdminBonafide() {
                             
                         </tbody>
                     </Table>
+                    </div>
                 </div>
             </div>
         </div>

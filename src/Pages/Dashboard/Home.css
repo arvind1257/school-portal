@@ -1,15 +1,52 @@
-.rightcol{
-    display: inline-block;
-    float: none;
-    vertical-align: top;
+.message-ul{
+  list-style-type: none;
+  position: relative;
+  left:-20px;
 }
-.leftcol{
-    display: inline-block;
-    float: none;
-    vertical-align: top;
+
+.message-ul li{
+  margin: 10px;
 }
-.col{
-    display: inline-block;
-    float: none;
-    vertical-align: top;
+
+.message-content1{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-left:50px;
+  font-size: 15px;
+  min-width: 200px;
+  min-height: 80px;
+  position: relative;
+}
+
+.message-title{
+  font-size: 18px;
+  background-color: #0784b5;
+  color:white;
+  border-radius: 10px;
+  padding:5px;
+  width:fit-content;
+  min-width:100px;
+  text-align: center;
+}
+
+.message-operation{
+  display: flex;
+  width:100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.message-user,
+.message-action{
+  color:gray;
+  cursor: pointer;
+}
+
+.spotlight-table{
+  width:120%;
+}
+
+.spotlight-table td{
+  padding: 7px;
 }

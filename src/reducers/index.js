@@ -4,12 +4,22 @@ import attendanceReducer from "./Attendance"
 import classmessageReducer from "./ClassMessage"
 import allStudentsReducer from "./AllStudents"
 import bonafideReducer from "./Bonafide"
-import subjectTeacherReducer from "./SubjectTeachers"
 import assessmentsReducer from "./Assessments"
 import answersReducer from "./Answers"
 import teacherReducer from "./Teacher"
+import adminReducer from "./Admin"
+import timeTableReducer from "./TimeTable"
+import allClassReducer from "./AllClass"
+import examReducer from "./Exam"
+import userLeaveReducer from "./UserLeave"
+import allLeaveReducer from "./AllLeave"
+import marksReducer from "./Marks"
+import marksCSVReducer from "./MarksCSV"
+import adminAttendanceReducer from "./AdminAttendance"
+import teacherAttendanceReducer from "./teacherAttendance"
+import studentAttendanceReducer from "./StudentAttendance"
+import spotlightReducer from "./Spotlight"
 
 export default combineReducers({
-    currentUserReducer,attendanceReducer,classmessageReducer,allStudentsReducer,bonafideReducer,subjectTeacherReducer
-    ,assessmentsReducer,answersReducer,teacherReducer
+    currentUserReducer,marksCSVReducer,attendanceReducer,classmessageReducer,allStudentsReducer,bonafideReducer,assessmentsReducer,answersReducer,teacherReducer,adminReducer,timeTableReducer,allClassReducer,examReducer,allLeaveReducer,userLeaveReducer,marksReducer,adminAttendanceReducer,teacherAttendanceReducer,studentAttendanceReducer,spotlightReducer
 })
