@@ -1,7 +1,6 @@
 import React from "react"
 
 import "../App.css"
-import SideNavBar from "../components/SideNavBar/SideNavBar"
 
 function Error404() {
     return (

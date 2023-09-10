@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import SideNavBar from '../../components/SideNavBar/SideNavBar'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as solid from "@fortawesome/free-solid-svg-icons";
@@ -7,15 +6,13 @@ import Table from "react-bootstrap/Table"
 
 import "./Class.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllClass, getClass, getStandardClass } from '../../actions/class';
+import { getStandardClass } from '../../actions/class';
 import { getTimeTable } from '../../actions/timetable';
-import { requestClassStudents } from '../../actions/students';
 
 function ClassInfo() {
 
     const dispatch = useDispatch();
     const [edit, setEdit] = useState(false);
-    const [edit1, setEdit1] = useState(false);
     const [standard, setStandard] = useState('');
 
     if (standard && edit) {
@@ -34,6 +31,7 @@ function ClassInfo() {
         let count = 0;
         class1.sections.map((item) => {
             count += class1.count[item][type];
+            return true;
         })
         return count;
     }

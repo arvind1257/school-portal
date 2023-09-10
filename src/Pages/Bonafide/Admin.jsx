@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
 import Table from "react-bootstrap/Table"
-import { DatePicker, Stack } from 'rsuite'
 
 import "./Bonafide.css"
-import SideNavBar from '../../components/SideNavBar/SideNavBar'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getAllBonafide } from '../../actions/bonafide'

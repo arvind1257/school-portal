@@ -10,7 +10,6 @@ const Teacher = () => {
     const [day, setDay] = useState("");
     const [timetableData, setTimetableData] = useState([]);
     const class1 = useSelector((state) => state.allClassReducer);
-    const currentUser = useSelector((state) => state.currentUserReducer);
     const standardList = [{ label: "I", value: 1 }, { label: "II", value: 2 }, { label: "III", value: 3 }, { label: "IV", value: 4 }, { label: "V", value: 5 }, { label: "VI", value: 6 }, { label: "VII", value: 7 }, { label: "VIII", value: 8 }, { label: "IX", value: 9 }, { label: "X", value: 10 }, { label: "XI", value: 11 }, { label: "XII", value: 12 }];
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 

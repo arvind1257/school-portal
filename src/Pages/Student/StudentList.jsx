@@ -3,8 +3,7 @@ import Table from 'react-bootstrap/Table'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import "./Student.css"
-import { requestClassStudents, requestStudents } from '../../actions/students'
-import SideNavBar from '../../components/SideNavBar/SideNavBar'
+import { requestClassStudents } from '../../actions/students'
 import { getClass } from '../../actions/class'
 
 function StudentList() {

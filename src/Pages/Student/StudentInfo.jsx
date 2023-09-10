@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import "./Student.css"
 import { requestStudents } from '../../actions/students'
-import SideNavBar from '../../components/SideNavBar/SideNavBar'
 
 function StudentInfo() {
 

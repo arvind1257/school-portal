@@ -31,7 +31,7 @@ function Student({status,onLoading}) {
         onLoading(true);
         dispatch(setCurrentUser({ type: localStorage.getItem('type'), id: localStorage.getItem('id') }));
         dispatch(StudentBonafide(navigate));
-    }, [dispatch,navigate])
+    }, [dispatch,navigate,onLoading])
 
     const currentUser = useSelector(state => state.currentUserReducer);
     const bonafide = useSelector(state => state.bonafideReducer);

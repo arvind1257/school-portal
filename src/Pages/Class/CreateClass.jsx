@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
 import "./Class.css"
-import SideNavBar from '../../components/SideNavBar/SideNavBar'
 import { Steps, ButtonGroup, Button } from 'rsuite';
 import Table from 'react-bootstrap/esm/Table';
 import { useDispatch, useSelector } from "react-redux";
-import { requestStudents, updateSection } from '../../actions/students';
+import { requestStudents } from '../../actions/students';
 import { createClass } from "../../actions/class"
 import { useNavigate } from 'react-router-dom';
-import { postTimeTable } from '../../actions/timetable';
 
 function CreateClass() {
     const [request1, setRequest1] = useState([])
@@ -29,6 +27,7 @@ function CreateClass() {
     const [break1, setBreak1] = useState([])
     const [subject, setSubject] = useState([])
     const [noSections, setNoSections] = useState(0);
+    // eslint-disable-next-line
     const [sections, setSection] = useState([]);
     const standardList = [{ label: "I", value: 1 }, { label: "II", value: 2 }, { label: "III", value: 3 }, { label: "IV", value: 4 }, { label: "V", value: 5 }, { label: "VI", value: 6 }, { label: "VII", value: 7 }, { label: "VIII", value: 8 }, { label: "IX", value: 9 }, { label: "X", value: 10 }, { label: "XI", value: 11 }, { label: "XII", value: 12 }]
     const [auto, setAuto] = useState(false);
@@ -98,6 +97,7 @@ function CreateClass() {
                     startTime: slot.startTime,
                     endTime: slot.endTime
                 })
+                return true;
             })
 
             setRequest3({

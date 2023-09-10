@@ -41,7 +41,7 @@ const Navbar = () => {
                     <li>
                         <Dropdown title="Kumar" placement="bottomEnd">
                             <Dropdown.Item key={1}><NavLink to='/Profile'><FontAwesomeIcon icon={solid.faUser} />&emsp;Profile</NavLink></Dropdown.Item>
-                            <Dropdown.Item key={2}><a onClick={()=>logout()}><FontAwesomeIcon icon={solid.faSignOutAlt} />&emsp;Logout</a></Dropdown.Item>
+                            <Dropdown.Item key={2}><NavLink onClick={()=>logout()}><FontAwesomeIcon icon={solid.faSignOutAlt} />&emsp;Logout</NavLink></Dropdown.Item>
                         </Dropdown>
                     </li>
                 </ul>

@@ -4,8 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Solid from "@fortawesome/free-solid-svg-icons";
 import * as Regular from "@fortawesome/free-regular-svg-icons";
 import * as api from "../../api"
-
-import SideNavBar from "../../components/SideNavBar/SideNavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { getClass } from "../../actions/class";
 import { getTimeTable } from "../../actions/timetable";

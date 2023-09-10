@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { Popover, Whisper, Button, Header } from 'rsuite';
-import SideNavBar from "../../components/SideNavBar/SideNavBar";
 import "./Leave.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as solid from "@fortawesome/free-solid-svg-icons";

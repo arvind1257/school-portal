@@ -221,8 +221,11 @@ const AddTimeTable = () => {
                     while (startTime !== item2.endTime) {
                         let slot = {};
                         let flag = 0;
+                        // eslint-disable-next-line
                         if (item2.break.filter((item3) => item3.startTime === startTime).length > 0) {
+                            // eslint-disable-next-line
                             flag = 1;
+                            // eslint-disable-next-line
                             let temp = item2.break.filter((item3) => item3.startTime === startTime);
                             slot["startTime"] = startTime
                             startTime = temp[0]["endTime"];

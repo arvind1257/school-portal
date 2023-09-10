@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Accordion } from 'react-bootstrap';
 
 import "./Fees.css"
-import Table from 'react-bootstrap/Table';
 
 const Admin = () => {
     const [buttonType, setButtonType] = useState("feesStructure");

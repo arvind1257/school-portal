@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table'
 import { useDispatch, useSelector } from "react-redux"
-
-import SideNavBar from '../../components/SideNavBar/SideNavBar'
 import { requestAdmins } from '../../actions/admins'
 import { requestTeachers } from '../../actions/teachers'
 

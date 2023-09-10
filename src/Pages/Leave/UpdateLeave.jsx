@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { Header } from 'rsuite';
-import SideNavBar from "../../components/SideNavBar/SideNavBar";
 import "./Leave.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllLeave } from "../../actions/leave";

@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { Steps, ButtonGroup, Button, Uploader } from 'rsuite';
+import { Steps, ButtonGroup, Button} from 'rsuite';
 import Table from 'react-bootstrap/Table'
 import "./Marks.css"
 import { useDispatch, useSelector } from 'react-redux';
-import SideNavBar from '../../components/SideNavBar/SideNavBar'
-import { useNavigate } from 'react-router-dom';
-import { getMarks, postMarks, postMany, delMarks, getMarksCSV } from '../../actions/marks';
-import marksCSVReducer from '../../reducers/MarksCSV';
+import { getMarks, getMarksCSV } from '../../actions/marks';
 
 const UploadMarks = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [standard, setStandard] = useState("");
     const [section, setSection] = useState("");
     const [subject, setSubject] = useState("");
     const [exam, setExam] = useState("");
     const [assessment, setAssessment] = useState("");
-    const [id, setId] = useState("");
     const [mark, setMark] = useState([]);
     const [step, setStep] = useState(0);
-    const [selectedFile, setSelectedFile] = useState('');
 
 
     useEffect(() => {
@@ -33,16 +27,7 @@ const UploadMarks = () => {
     // console.log(csvData)
 
     const standardList = [{ label: "I", value: 1 }, { label: "II", value: 2 }, { label: "III", value: 3 }, { label: "IV", value: 4 }, { label: "V", value: 5 }, { label: "VI", value: 6 }, { label: "VII", value: 7 }, { label: "VIII", value: 8 }, { label: "IX", value: 9 }, { label: "X", value: 10 }, { label: "XI", value: 11 }, { label: "XII", value: 12 }]
-    let tt;
-    if (m) {
-        tt = {
-            "type": "assessment",
-            "assessment": "64923d1b6255f24e230a6c60",
-            "student": "646c95f4814b7bf44c74be11",
-            "scoredMarks": "2",
-            "remarks": "bad"
-        }
-    }
+    
     const handleSubmit = () => {
         // dispatch(postMarks(tt))
         // dispatch(delMarks(tt))

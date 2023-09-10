@@ -3,7 +3,7 @@ import Accordion from 'react-bootstrap/Accordion'
 import "./Assessments.css"
 import { useDispatch, useSelector } from 'react-redux'
 import { getAnswers, getAssessments } from '../../actions/assessments'
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import * as Solid from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Student from './Student'
@@ -12,7 +12,6 @@ import Teacher from './Teacher'
 function Assessments({status,onLoading}) {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [display, setDisplay] = useState(false);
     const [assessmentID, setAssessmentID] = useState(false);
     const [teacherID, setTeacherID] = useState(false);

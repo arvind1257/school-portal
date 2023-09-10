@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import SideNavBar from '../../components/SideNavBar/SideNavBar'
 import Table from "react-bootstrap/Table";
 import { requestClassStudents } from '../../actions/students';
 import { getClass } from "../../actions/class";
 import { getAssessments } from "../../actions/assessments";
 import { getMarksByAssessmentID, getMarksByExamID } from "../../actions/marks";
 import { getStudentExam } from "../../actions/exam";
-import matchers from '@testing-library/jest-dom/matchers';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import * as solid from "@fortawesome/free-solid-svg-icons"
 import { Link } from 'react-router-dom'
@@ -65,7 +63,7 @@ const MarksTeacher = () => {
       if (filteredAssessments.length > 0)
         setAssessmentID(filteredAssessments)
     }
-  }, [assessment, standard, section])
+  }, [assessment, standard, section, classes,assessments])
   //Set examID
   useEffect(() => {
     if (classes && exams && exam) {
@@ -78,7 +76,7 @@ const MarksTeacher = () => {
         console.log(examID)
       }
     }
-  }, [exam, standard, section])
+  }, [exam, standard, section, classes,examID,exams])
 
   //get ass && exam marks
   useEffect(() => {
@@ -88,7 +86,7 @@ const MarksTeacher = () => {
     if (examID) {
       dispatch(getMarksByExamID({ id: examID }));
     }
-  }, [assessmentID, examID]);
+  }, [assessmentID, examID,dispatch]);
 
   let StudentAssessmentMarks = useSelector((state) => state.marksReducer)
   // console.log(StudentAssessmentMarks)

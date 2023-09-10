@@ -3,13 +3,11 @@ import { Steps, ButtonGroup, Button, Uploader } from 'rsuite';
 import Table from 'react-bootstrap/Table'
 import "./Marks.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { getMarks, postMarks, postManyFile, delMarks, postMany, getMarksCSV } from '../../actions/marks';
-import { getAnswers, getAssessments } from '../../actions/assessments';
+import { getMarks, postManyFile, postMany, getMarksCSV } from '../../actions/marks';
+import { getAnswers } from '../../actions/assessments';
 import {requestClassStudents} from '../../actions/students';
 const UploadMarks = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [standard, setStandard] = useState("");
     const [section, setSection] = useState("");
     const [subject, setSubject] = useState("");
@@ -18,9 +16,7 @@ const UploadMarks = () => {
     const [step, setStep] = useState(0);
     const [file, setFile] = useState();
     const [assessmentId, setAssessmentId] = useState("");
-    const [examId, setExamId] = useState("");
     const [studentData, setStudentData] = useState([]);
-    const [classId, setClassId] = useState("");
     useEffect(() => {
         dispatch(getMarks({ type: localStorage.getItem('type'), id: localStorage.getItem('id') }));
         dispatch(getMarksCSV({ token: localStorage.getItem('token') }));
@@ -31,7 +27,6 @@ const UploadMarks = () => {
     const m = useSelector((state) => state.marksReducer)
     const csvData = useSelector((state) => state.marksCSVReducer)
     const answers = useSelector((state) => state.marksReducer)
-    const classList = useSelector((state)=>state.allStudentsReducer)
     console.log(m)
     // console.log(answers)
     // console.log(csvData)
@@ -140,7 +135,6 @@ const standardList = [{ label: "I", value: 1 }, { label: "II", value: 2 }, { lab
                     item.title === assessment
                 ));
             setAssessmentId(studentDataFromAssessment[0]._id);
-            setClassId(studentDataFromAssessment[0].class._id);
 
             // const constructedStudentData = {
             //     type: "assessment",
@@ -162,7 +156,6 @@ const standardList = [{ label: "I", value: 1 }, { label: "II", value: 2 }, { lab
                     item.examName === exam
                 ));
                 console.log(studentDataFromExam)
-            setExamId(studentDataFromExam[0]._id);
 
             // const constructedStudentData = {
             //     type: "exam",

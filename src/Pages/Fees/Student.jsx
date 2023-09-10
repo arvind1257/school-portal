@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import SideNavBar from '../../components/SideNavBar/SideNavBar'
 import Accordion from 'react-bootstrap/Accordion'
 import Table from 'react-bootstrap/esm/Table';
@@ -6,7 +6,6 @@ import Table from 'react-bootstrap/esm/Table';
 import "./Fees.css"
 
 const Admin = () => {
-    const [active, setActive] = useState("school");
     return (
         <div className='Main'>
             <SideNavBar />

@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Table from "react-bootstrap/Table"
-import { DatePicker, Stack } from 'rsuite'
 
 import "./Bonafide.css"
-import SideNavBar from '../../components/SideNavBar/SideNavBar'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { deleteBonafide, postBonafideFile,rejectBonafide,viewBonafide } from '../../actions/bonafide'
 const ViewBonafide = () => {
